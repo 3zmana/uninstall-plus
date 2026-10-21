@@ -1,0 +1,12 @@
+#!/usr/bin/python3
+"""Launcher for Uninstall Plus."""
+
+import os
+import sys
+
+# The application modules are installed in a private directory.
+sys.path.insert(0, os.environ.get("UNINSTALL_PLUS_DATADIR", "/usr/share/uninstall-plus"))
+
+from uninstall_plus.main import main  # noqa: E402
+
+sys.exit(main())

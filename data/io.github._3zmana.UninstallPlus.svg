@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Uninstall Plus application icon: an open package box with a removal badge. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="side-left" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#62a0ea"/>
+      <stop offset="1" stop-color="#3584e4"/>
+    </linearGradient>
+    <linearGradient id="side-right" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3584e4"/>
+      <stop offset="1" stop-color="#1c71d8"/>
+    </linearGradient>
+    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f66151"/>
+      <stop offset="1" stop-color="#c01c28"/>
+    </linearGradient>
+  </defs>
+  <!-- Shadow -->
+  <ellipse cx="60" cy="112" rx="42" ry="8" fill="#000" opacity="0.12"/>
+  <!-- Box: left and right faces -->
+  <path d="M18 42 L60 60 L60 110 L18 92 Z" fill="url(#side-left)"/>
+  <path d="M102 42 L60 60 L60 110 L102 92 Z" fill="url(#side-right)"/>
+  <!-- Box: inside, visible through the open top -->
+  <path d="M18 42 L60 24 L102 42 L60 60 Z" fill="#1a5fb4"/>
+  <!-- Open flaps -->
+  <path d="M18 42 L60 60 L46 72 L4 54 Z" fill="#99c1f1"/>
+  <path d="M102 42 L60 60 L74 72 L116 54 Z" fill="#c0d8f6"/>
+  <!-- Edge highlight -->
+  <path d="M60 60 L60 110" stroke="#ffffff" stroke-opacity="0.35" stroke-width="2"/>
+  <!-- Removal badge -->
+  <circle cx="98" cy="96" r="24" fill="#ffffff"/>
+  <circle cx="98" cy="96" r="20" fill="url(#badge)"/>
+  <rect x="86" y="92.5" width="24" height="7" rx="3.5" fill="#ffffff"/>
+</svg>

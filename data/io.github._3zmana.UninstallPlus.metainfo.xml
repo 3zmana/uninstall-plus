@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github._3zmana.UninstallPlus</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>Uninstall Plus</name>
+  <summary>See and uninstall RPM packages and Flatpak apps</summary>
+  <summary xml:lang="fr">Visualiser et désinstaller les paquets RPM et les applications Flatpak</summary>
+  <description>
+    <p>
+      Uninstall Plus lists everything installed on your Fedora system, including
+      software that was installed from the command line, and lets you remove it.
+    </p>
+    <p xml:lang="fr">
+      Uninstall Plus liste tout ce qui est installé sur votre système Fedora, y compris
+      les logiciels installés en ligne de commande, et vous permet de les supprimer.
+    </p>
+    <ul>
+      <li>All RPM packages with their description and origin repository</li>
+      <li>Filter by repository or show only the packages you installed yourself</li>
+      <li>See exactly what DNF will remove before uninstalling a package</li>
+      <li>Flatpak applications, with unused runtimes cleaned up automatically</li>
+      <li>Add, remove, enable and disable DNF repositories, COPR projects and Flatpak remotes</li>
+      <li>English and French interface, light and dark themes</li>
+    </ul>
+  </description>
+  <url type="homepage">https://github.com/3zmana/uninstall-plus</url>
+  <url type="bugtracker">https://github.com/3zmana/uninstall-plus/issues</url>
+  <url type="vcs-browser">https://github.com/3zmana/uninstall-plus</url>
+  <screenshots>
+    <screenshot type="default">
+      <caption>Installed RPM packages with their origin repository</caption>
+      <image>https://raw.githubusercontent.com/3zmana/uninstall-plus/main/docs/screenshots/rpm-packages.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Flatpak applications</caption>
+      <image>https://raw.githubusercontent.com/3zmana/uninstall-plus/main/docs/screenshots/flatpak.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>DNF repositories and Flatpak remotes</caption>
+      <image>https://raw.githubusercontent.com/3zmana/uninstall-plus/main/docs/screenshots/repositories.png</image>
+    </screenshot>
+  </screenshots>
+  <launchable type="desktop-id">io.github._3zmana.UninstallPlus.desktop</launchable>
+  <developer id="io.github._3zmana">
+    <name>3zmana</name>
+  </developer>
+  <content_rating type="oars-1.1"/>
+  <requires>
+    <display_length compare="ge">360</display_length>
+  </requires>
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  <categories>
+    <category>System</category>
+    <category>PackageManager</category>
+  </categories>
+  <releases>
+    <release version="1.0.1" date="2026-10-21">
+      <description>
+        <p>Preferences dialog: interface language (English or French) and color theme.</p>
+      </description>
+    </release>
+    <release version="1.0.0" date="2026-10-21">
+      <description>
+        <p>First release.</p>
+      </description>
+    </release>
+  </releases>
+</component>

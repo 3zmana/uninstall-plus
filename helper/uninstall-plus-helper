@@ -1,0 +1,301 @@
+#!/usr/bin/python3 -I
+"""Privileged helper for Uninstall Plus.
+
+This program runs as root through pkexec (see the polkit policy shipped with
+the application). It accepts a small fixed set of actions, validates every
+argument with strict patterns and never runs commands through a shell.
+
+Usage:
+    uninstall-plus-helper [--lang=LANG] ACTION ARGUMENTS...
+
+Actions:
+    uninstall-plus-helper remove-preview PACKAGE
+    uninstall-plus-helper remove PACKAGE
+    uninstall-plus-helper repo-enable REPO_ID
+    uninstall-plus-helper repo-disable REPO_ID
+    uninstall-plus-helper repo-add-url URL
+    uninstall-plus-helper repo-add-manual ID NAME BASEURL GPGCHECK GPGKEY ENABLED
+    uninstall-plus-helper copr-enable OWNER/PROJECT
+    uninstall-plus-helper repo-remove REPO_ID
+
+Exit codes: 0 success, 1 operation failed, 2 invalid arguments.
+"""
+
+import gettext
+import glob
+import os
+import re
+import subprocess
+import sys
+
+DOMAIN = "uninstall-plus"
+LOCALEDIR = "/usr/share/locale"
+LANG_RE = re.compile(r"^[a-z]{2,3}(_[A-Z]{2})?$")
+
+# Messages are English until main() loads the language passed by the app.
+_ = gettext.NullTranslations().gettext
+
+
+def set_language(language):
+    global _
+    translation = gettext.translation(DOMAIN, LOCALEDIR, languages=[language], fallback=True)
+    _ = translation.gettext
+
+# Package specs: name-version-release.arch, never starting with "-".
+PACKAGE_RE = re.compile(r"^[A-Za-z0-9_+.~^:][A-Za-z0-9_+.~^:-]{0,254}$")
+REPO_ID_RE = re.compile(r"^[A-Za-z0-9_][A-Za-z0-9_.:@+-]{0,99}$")
+COPR_RE = re.compile(r"^@?[A-Za-z0-9_.-]+/[A-Za-z0-9_.+-]+$")
+URL_RE = re.compile(r"^(https?|ftp|file)://[^\s'\"<>]+$")
+NAME_RE = re.compile(r"^[^\x00-\x1f\x7f]{1,200}$")
+
+USER_REPO_DIR = "/etc/yum.repos.d"
+REPO_DIRS = [USER_REPO_DIR, "/etc/distro.repos.d", "/usr/share/dnf5/repos.d"]
+CONFIG_MANAGER_OVERRIDE = "/etc/dnf/repos.override.d/99-config_manager.repo"
+
+SAFE_ENV = {
+    "PATH": "/usr/sbin:/usr/bin:/sbin:/bin",
+    "LC_ALL": "C.UTF-8",
+    "NO_COLOR": "1",
+    "HOME": "/root",
+}
+
+
+def fail(message, code=1):
+    print(message, file=sys.stderr)
+    sys.exit(code)
+
+
+def check(value, pattern, what):
+    """Exit with an error unless `value` fully matches `pattern`."""
+    if not pattern.fullmatch(value or ""):
+        fail(_("Invalid {what}: {value}").format(what=what, value=repr(value)), 2)
+    return value
+
+
+def run(args, echo=True):
+    """Run a command without a shell, forwarding its output."""
+    proc = subprocess.run(
+        args, env=SAFE_ENV, stdin=subprocess.DEVNULL,
+        capture_output=True, text=True, errors="replace",
+    )
+    if echo:
+        sys.stdout.write(proc.stdout)
+        sys.stderr.write(proc.stderr)
+    return proc
+
+
+def is_dnf5():
+    return "dnf5" in os.path.basename(os.path.realpath("/usr/bin/dnf"))
+
+
+def finish(proc):
+    sys.exit(0 if proc.returncode == 0 else 1)
+
+
+# ---------------------------------------------------------------------------
+# Repository file helpers
+# ---------------------------------------------------------------------------
+
+def read_lines(path):
+    with open(path, encoding="utf-8", errors="replace") as handle:
+        return handle.readlines()
+
+
+def sections_in(lines):
+    names = []
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            names.append(stripped[1:-1].strip())
+    return names
+
+
+def without_section(lines, section):
+    """Return the lines of an INI file with one section removed."""
+    result, skipping = [], False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("[") and stripped.endswith("]"):
+            skipping = stripped[1:-1].strip() == section
+        if not skipping:
+            result.append(line)
+    return result
+
+
+def find_repo_file(repo_id):
+    """Return the path of the .repo file defining `repo_id`, or None."""
+    for directory in REPO_DIRS:
+        for path in sorted(glob.glob(os.path.join(directory, "*.repo"))):
+            try:
+                if repo_id in sections_in(read_lines(path)):
+                    return path
+            except OSError:
+                continue
+    return None
+
+
+def copr_spec_from_file(path):
+    """Return "hub/owner/project" for a file created by `dnf copr enable`."""
+    base = os.path.basename(path)
+    if not base.startswith("_copr:") or not base.endswith(".repo"):
+        return ""
+    parts = base[len("_copr:"): -len(".repo")].split(":")
+    if len(parts) < 3:
+        return ""
+    hub, owner, project = parts[0], parts[1], parts[2]
+    if owner.startswith("group_"):
+        owner = "@" + owner[len("group_"):]
+    return f"{hub}/{owner}/{project}"
+
+
+def write_atomic(path, lines):
+    tmp = path + ".uninstall-plus.tmp"
+    with open(tmp, "w", encoding="utf-8") as handle:
+        handle.writelines(lines)
+    os.chmod(tmp, 0o644)
+    os.replace(tmp, path)
+
+
+# ---------------------------------------------------------------------------
+# Actions
+# ---------------------------------------------------------------------------
+
+def action_remove_preview(package):
+    check(package, PACKAGE_RE, _("package"))
+    proc = run(["dnf", "remove", "--assumeno", package], echo=False)
+    output = (proc.stdout + "\n" + proc.stderr).strip()
+    print(output)
+    # "--assumeno" always aborts, so success means a transaction was computed.
+    sys.exit(0 if re.search(r"^\s*Removing", output, re.MULTILINE) else 1)
+
+
+def action_remove(package):
+    check(package, PACKAGE_RE, _("package"))
+    finish(run(["dnf", "-y", "remove", package]))
+
+
+def action_repo_toggle(repo_id, enabled):
+    check(repo_id, REPO_ID_RE, _("repository id"))
+    value = "1" if enabled else "0"
+    if is_dnf5():
+        finish(run(["dnf", "config-manager", "setopt", f"{repo_id}.enabled={value}"]))
+    flag = "--set-enabled" if enabled else "--set-disabled"
+    finish(run(["dnf", "config-manager", flag, repo_id]))
+
+
+def action_repo_add_url(url):
+    check(url, URL_RE, _("URL"))
+    if is_dnf5():
+        finish(run(["dnf", "config-manager", "addrepo", f"--from-repofile={url}"]))
+    finish(run(["dnf", "config-manager", "--add-repo", url]))
+
+
+def action_repo_add_manual(repo_id, name, baseurl, gpgcheck, gpgkey, enabled):
+    check(repo_id, REPO_ID_RE, _("repository id"))
+    check(name, NAME_RE, _("name"))
+    check(baseurl, URL_RE, _("base URL"))
+    if gpgcheck not in ("0", "1") or enabled not in ("0", "1"):
+        fail(_("Invalid boolean value."), 2)
+    if gpgkey:
+        check(gpgkey, URL_RE, _("GPG key URL"))
+    if find_repo_file(repo_id):
+        fail(_("A repository with the id “{id}” already exists.").format(id=repo_id))
+    path = os.path.join(USER_REPO_DIR, f"{repo_id}.repo")
+    if os.path.exists(path):
+        fail(_("The file {path} already exists.").format(path=path))
+    lines = [
+        f"[{repo_id}]\n",
+        f"name={name}\n",
+        f"baseurl={baseurl}\n",
+        f"enabled={enabled}\n",
+        f"gpgcheck={gpgcheck}\n",
+    ]
+    if gpgkey:
+        lines.append(f"gpgkey={gpgkey}\n")
+    write_atomic(path, lines)
+    print(_("Created {path}").format(path=path))
+    sys.exit(0)
+
+
+def action_copr_enable(spec):
+    check(spec, COPR_RE, _("COPR project"))
+    finish(run(["dnf", "-y", "copr", "enable", spec]))
+
+
+def action_repo_remove(repo_id):
+    check(repo_id, REPO_ID_RE, _("repository id"))
+    path = find_repo_file(repo_id)
+    if not path:
+        fail(_("No repository with the id “{id}” was found.").format(id=repo_id))
+    if os.path.dirname(path) != USER_REPO_DIR:
+        fail(_("This repository is part of the system and cannot be removed. "
+               "Disable it instead."))
+    owner = run(["rpm", "-qf", "--qf", "%{NAME}\\n", path], echo=False)
+    if owner.returncode == 0 and owner.stdout.strip():
+        fail(
+            _("This repository is provided by the package “{package}”. Disable it, or "
+              "uninstall that package from the RPM Packages tab.").format(
+                package=owner.stdout.split()[0])
+        )
+
+    copr = copr_spec_from_file(path)
+    if copr:
+        # Let the COPR plugin clean up after itself.
+        proc = run(["dnf", "-y", "copr", "remove", copr])
+        if proc.returncode == 0 and not os.path.exists(path):
+            clean_override(repo_id)
+            sys.exit(0)
+
+    lines = read_lines(path)
+    if sections_in(lines) == [repo_id]:
+        os.remove(path)
+        print(_("Removed {path}").format(path=path))
+    else:
+        write_atomic(path, without_section(lines, repo_id))
+        print(_("Removed [{id}] from {path}").format(id=repo_id, path=path))
+    clean_override(repo_id)
+    sys.exit(0)
+
+
+def clean_override(repo_id):
+    """Drop a leftover enable/disable override for a removed repository."""
+    try:
+        lines = read_lines(CONFIG_MANAGER_OVERRIDE)
+    except OSError:
+        return
+    if repo_id in sections_in(lines):
+        write_atomic(CONFIG_MANAGER_OVERRIDE, without_section(lines, repo_id))
+
+
+ACTIONS = {
+    "remove-preview": (1, action_remove_preview),
+    "remove": (1, action_remove),
+    "repo-enable": (1, lambda rid: action_repo_toggle(rid, True)),
+    "repo-disable": (1, lambda rid: action_repo_toggle(rid, False)),
+    "repo-add-url": (1, action_repo_add_url),
+    "repo-add-manual": (6, action_repo_add_manual),
+    "copr-enable": (1, action_copr_enable),
+    "repo-remove": (1, action_repo_remove),
+}
+
+
+def main(argv):
+    argv = list(argv)
+    # Optional "--lang=fr" chosen by the application (pkexec clears LANGUAGE).
+    if len(argv) > 1 and argv[1].startswith("--lang="):
+        language = argv.pop(1)[len("--lang="):]
+        if LANG_RE.fullmatch(language):
+            set_language(language)
+    if len(argv) < 2 or argv[1] not in ACTIONS:
+        fail(__doc__, 2)
+    count, handler = ACTIONS[argv[1]]
+    args = argv[2:]
+    if len(args) != count:
+        fail(_("“{action}” expects {count} argument(s).").format(action=argv[1], count=count), 2)
+    if os.geteuid() != 0:
+        fail(_("This helper must be run as root (through pkexec)."), 2)
+    handler(*args)
+
+
+if __name__ == "__main__":
+    main(sys.argv)

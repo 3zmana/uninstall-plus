@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Application
+Name=Uninstall Plus
+GenericName=Package Manager
+GenericName[fr]=Gestionnaire de paquets
+Comment=See and uninstall RPM packages and Flatpak applications
+Comment[fr]=Visualiser et désinstaller les paquets RPM et les applications Flatpak
+Exec=uninstall-plus
+Icon=io.github._3zmana.UninstallPlus
+Terminal=false
+Categories=GNOME;GTK;System;PackageManager;
+Keywords=uninstall;remove;package;rpm;dnf;flatpak;repository;copr;software;
+Keywords[fr]=désinstaller;supprimer;paquet;rpm;dnf;flatpak;dépôt;copr;logiciel;
+StartupNotify=true
+DBusActivatable=false

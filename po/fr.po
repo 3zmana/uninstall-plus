@@ -1,0 +1,956 @@
+# French translation of Uninstall Plus.
+# This file is distributed under the same license as the uninstall-plus package.
+msgid ""
+msgstr ""
+"Project-Id-Version: uninstall-plus 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/3zmana/uninstall-plus/issues\n"
+"POT-Creation-Date: 2026-10-21 14:25+0000\n"
+"PO-Revision-Date: 2026-10-21 14:00+0200\n"
+"Last-Translator: 3zmana <19848572+3zmana@users.noreply.github.com>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: uninstall_plus/backend.py:77
+#, python-brace-format
+msgid "The command “{command}” is not installed."
+msgstr "La commande « {command} » n’est pas installée."
+
+#: uninstall_plus/backend.py:80
+#, python-brace-format
+msgid "The command “{command}” took too long to answer."
+msgstr "La commande « {command} » a mis trop de temps à répondre."
+
+#: uninstall_plus/backend.py:92
+msgid "The privileged helper is missing."
+msgstr "L’assistant privilégié est introuvable."
+
+#: uninstall_plus/backend.py:93
+#, python-brace-format
+msgid ""
+"Expected location: {path}\n"
+"Reinstall the uninstall-plus package."
+msgstr ""
+"Emplacement attendu : {path}\n"
+"Réinstallez le paquet uninstall-plus."
+
+#: uninstall_plus/backend.py:99
+msgid "Authentication was cancelled."
+msgstr "L’authentification a été annulée."
+
+#: uninstall_plus/backend.py:101
+msgid "You are not allowed to perform this action."
+msgstr "Vous n’êtes pas autorisé à effectuer cette action."
+
+#: uninstall_plus/backend.py:103 uninstall_plus/backend.py:687
+msgid "The operation failed."
+msgstr "L’opération a échoué."
+
+#: uninstall_plus/backend.py:234
+msgid "Could not query DNF."
+msgstr "Impossible d’interroger DNF."
+
+#: uninstall_plus/backend.py:241
+msgid "Could not read the RPM database."
+msgstr "Impossible de lire la base de données RPM."
+
+#: uninstall_plus/backend.py:256
+#, python-brace-format
+msgid "Repository information is unavailable: {error}"
+msgstr "Les informations sur les dépôts ne sont pas disponibles : {error}"
+
+#: uninstall_plus/backend.py:267
+#, python-brace-format
+msgid "Install reason is unavailable: {error}"
+msgstr "La raison d’installation n’est pas disponible : {error}"
+
+#: uninstall_plus/backend.py:290
+msgid "Could not read package details."
+msgstr "Impossible de lire les détails du paquet."
+
+#: uninstall_plus/backend.py:335 uninstall_plus/rpm_page.py:308
+#: uninstall_plus/rpm_page.py:309
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: uninstall_plus/backend.py:337
+msgid "Local File"
+msgstr "Fichier local"
+
+#: uninstall_plus/backend.py:339
+msgid "System Installer"
+msgstr "Installateur du système"
+
+#: uninstall_plus/backend.py:418
+msgid "Could not list Flatpak applications."
+msgstr "Impossible de lister les applications Flatpak."
+
+#: uninstall_plus/backend.py:435
+msgid "Uninstall failed."
+msgstr "La désinstallation a échoué."
+
+#: uninstall_plus/backend.py:680
+msgid "Could not list Flatpak remotes."
+msgstr "Impossible de lister les dépôts Flatpak."
+
+#: uninstall_plus/details.py:38 uninstall_plus/flatpak_page.py:52
+#: uninstall_plus/flatpak_page.py:201 uninstall_plus/rpm_page.py:60
+#: uninstall_plus/rpm_page.py:361
+msgid "Uninstall"
+msgstr "Désinstaller"
+
+#: uninstall_plus/flatpak_page.py:21 uninstall_plus/preferences.py:30
+#: uninstall_plus/preferences.py:47 uninstall_plus/repos_page.py:418
+msgid "System"
+msgstr "Système"
+
+#: uninstall_plus/flatpak_page.py:23 uninstall_plus/repos_page.py:418
+msgid "User"
+msgstr "Utilisateur"
+
+#: uninstall_plus/flatpak_page.py:41 uninstall_plus/rpm_page.py:89
+msgid "unknown"
+msgstr "inconnu"
+
+#: uninstall_plus/flatpak_page.py:41 uninstall_plus/flatpak_page.py:182
+msgid "Remote"
+msgstr "Dépôt"
+
+#: uninstall_plus/flatpak_page.py:44 uninstall_plus/flatpak_page.py:183
+#: uninstall_plus/repos_page.py:374 uninstall_plus/repos_page.py:417
+msgid "Installation"
+msgstr "Installation"
+
+#: uninstall_plus/flatpak_page.py:77
+msgid "Search applications"
+msgstr "Rechercher des applications"
+
+#: uninstall_plus/flatpak_page.py:98
+msgid "Reading Flatpak applications…"
+msgstr "Lecture des applications Flatpak…"
+
+#: uninstall_plus/flatpak_page.py:100
+msgid "No Applications Found"
+msgstr "Aucune application trouvée"
+
+#: uninstall_plus/flatpak_page.py:101
+msgid "Try a different search."
+msgstr "Essayez une autre recherche."
+
+#: uninstall_plus/flatpak_page.py:103
+msgid "No Flatpak Applications"
+msgstr "Aucune application Flatpak"
+
+#: uninstall_plus/flatpak_page.py:104
+msgid "Applications installed with Flatpak will appear here."
+msgstr "Les applications installées avec Flatpak apparaîtront ici."
+
+#: uninstall_plus/flatpak_page.py:107
+msgid "Could Not Read Flatpak Applications"
+msgstr "Impossible de lire les applications Flatpak"
+
+#: uninstall_plus/flatpak_page.py:124
+#, python-brace-format
+msgid "{shown} of {total} app"
+msgid_plural "{shown} of {total} apps"
+msgstr[0] "{shown} sur {total} application"
+msgstr[1] "{shown} sur {total} applications"
+
+#: uninstall_plus/flatpak_page.py:126
+#, python-brace-format
+msgid "{total} app"
+msgid_plural "{total} apps"
+msgstr[0] "{total} application"
+msgstr[1] "{total} applications"
+
+#: uninstall_plus/flatpak_page.py:178 uninstall_plus/rpm_page.py:304
+msgid "Information"
+msgstr "Informations"
+
+#: uninstall_plus/flatpak_page.py:179
+msgid "Application ID"
+msgstr "Identifiant de l’application"
+
+#: uninstall_plus/flatpak_page.py:180 uninstall_plus/rpm_page.py:305
+msgid "Version"
+msgstr "Version"
+
+#: uninstall_plus/flatpak_page.py:181
+msgid "Branch"
+msgstr "Branche"
+
+#: uninstall_plus/flatpak_page.py:184 uninstall_plus/rpm_page.py:308
+msgid "Installed Size"
+msgstr "Taille installée"
+
+#: uninstall_plus/flatpak_page.py:185
+msgid "Reference"
+msgstr "Référence"
+
+#: uninstall_plus/flatpak_page.py:191
+#, python-brace-format
+msgid ""
+"{name} will be removed for all users. Runtimes that are no longer used by "
+"any application will be removed as well."
+msgstr ""
+"{name} sera supprimé pour tous les utilisateurs. Les environnements "
+"d’exécution qui ne sont plus utilisés par aucune application seront "
+"également supprimés."
+
+#: uninstall_plus/flatpak_page.py:194
+#, python-brace-format
+msgid ""
+"{name} will be removed for your user account. Runtimes that are no longer "
+"used by any application will be removed as well."
+msgstr ""
+"{name} sera supprimé de votre compte utilisateur. Les environnements "
+"d’exécution qui ne sont plus utilisés par aucune application seront "
+"également supprimés."
+
+#: uninstall_plus/flatpak_page.py:196 uninstall_plus/rpm_page.py:354
+#, python-brace-format
+msgid "Uninstall {name}?"
+msgstr "Désinstaller {name} ?"
+
+#: uninstall_plus/flatpak_page.py:198
+msgid "Also delete the app's data and settings"
+msgstr "Supprimer aussi les données et les réglages de l’application"
+
+#: uninstall_plus/flatpak_page.py:200 uninstall_plus/repos_page.py:264
+#: uninstall_plus/repos_page.py:444 uninstall_plus/rpm_page.py:360
+msgid "Cancel"
+msgstr "Annuler"
+
+#: uninstall_plus/flatpak_page.py:212 uninstall_plus/rpm_page.py:372
+#, python-brace-format
+msgid "Could Not Uninstall “{name}”"
+msgstr "Impossible de désinstaller « {name} »"
+
+#: uninstall_plus/flatpak_page.py:213 uninstall_plus/rpm_page.py:373
+#, python-brace-format
+msgid "Uninstalling {name}…"
+msgstr "Désinstallation de {name}…"
+
+#: uninstall_plus/flatpak_page.py:220 uninstall_plus/rpm_page.py:380
+#, python-brace-format
+msgid "{name} was uninstalled"
+msgstr "{name} a été désinstallé"
+
+#: uninstall_plus/i18n.py:105
+msgid "B"
+msgstr "o"
+
+#: uninstall_plus/i18n.py:105
+msgid "kB"
+msgstr "ko"
+
+#: uninstall_plus/i18n.py:105
+msgid "MB"
+msgstr "Mo"
+
+#: uninstall_plus/i18n.py:105
+msgid "GB"
+msgstr "Go"
+
+#: uninstall_plus/i18n.py:105
+msgid "TB"
+msgstr "To"
+
+#. Translators: a file size, for example "12.3 MB".
+#: uninstall_plus/i18n.py:115
+#, python-brace-format
+msgid "{number} {unit}"
+msgstr "{number} {unit}"
+
+#: uninstall_plus/main.py:74
+#, python-brace-format
+msgid "The new language will be used the next time {app} starts"
+msgstr "La nouvelle langue sera utilisée au prochain démarrage d’{app}"
+
+#: uninstall_plus/main.py:110
+msgid ""
+"See and uninstall the RPM packages and Flatpak applications installed on "
+"your system, and manage their repositories."
+msgstr ""
+"Visualisez et désinstallez les paquets RPM et les applications Flatpak "
+"installés sur votre système, et gérez leurs dépôts."
+
+#. Translators: put your name here; it is shown in the About dialog.
+#: uninstall_plus/main.py:117
+msgid "translator-credits"
+msgstr "3zmana"
+
+#: uninstall_plus/preferences.py:14 uninstall_plus/window.py:20
+#: uninstall_plus/window.py:51
+msgid "Preferences"
+msgstr "Paramètres"
+
+#: uninstall_plus/preferences.py:18 uninstall_plus/window.py:132
+msgid "General"
+msgstr "Général"
+
+#: uninstall_plus/preferences.py:26
+msgid "Language"
+msgstr "Langue"
+
+#: uninstall_plus/preferences.py:27
+msgid ""
+"“System” uses the language of your session, or English when it is not "
+"available."
+msgstr ""
+"« Système » utilise la langue de votre session, ou l’anglais si elle n’est "
+"pas disponible."
+
+#: uninstall_plus/preferences.py:32
+msgid "Interface Language"
+msgstr "Langue de l’interface"
+
+#: uninstall_plus/preferences.py:42
+msgid "Appearance"
+msgstr "Apparence"
+
+#: uninstall_plus/preferences.py:43
+msgid "“System” follows the light or dark style chosen in GNOME Settings."
+msgstr ""
+"« Système » suit le style clair ou sombre choisi dans les Paramètres de "
+"GNOME."
+
+#: uninstall_plus/preferences.py:46
+msgid "Theme"
+msgstr "Thème"
+
+#: uninstall_plus/preferences.py:47
+msgid "Light"
+msgstr "Clair"
+
+#: uninstall_plus/preferences.py:47
+msgid "Dark"
+msgstr "Sombre"
+
+#: uninstall_plus/repos_page.py:62
+msgid "Show Debug and Source Repositories"
+msgstr "Afficher les dépôts de débogage et de sources"
+
+#: uninstall_plus/repos_page.py:63
+msgid "These repositories are only useful to developers"
+msgstr "Ces dépôts ne sont utiles qu’aux développeurs"
+
+#: uninstall_plus/repos_page.py:71
+msgid "DNF Repositories"
+msgstr "Dépôts DNF"
+
+#: uninstall_plus/repos_page.py:72
+msgid "Sources used to install and update RPM packages."
+msgstr "Sources utilisées pour installer et mettre à jour les paquets RPM."
+
+#: uninstall_plus/repos_page.py:75
+msgid "From a .repo File URL…"
+msgstr "Depuis l’URL d’un fichier .repo…"
+
+#: uninstall_plus/repos_page.py:76
+msgid "COPR Project…"
+msgstr "Projet COPR…"
+
+#: uninstall_plus/repos_page.py:77
+msgid "Manual Entry…"
+msgstr "Saisie manuelle…"
+
+#: uninstall_plus/repos_page.py:79 uninstall_plus/repos_page.py:346
+msgid "Add Repository"
+msgstr "Ajouter un dépôt"
+
+#: uninstall_plus/repos_page.py:86
+msgid "Flatpak Remotes"
+msgstr "Dépôts Flatpak"
+
+#: uninstall_plus/repos_page.py:87
+msgid "Sources used to install and update Flatpak applications."
+msgstr ""
+"Sources utilisées pour installer et mettre à jour les applications Flatpak."
+
+#: uninstall_plus/repos_page.py:90 uninstall_plus/repos_page.py:431
+msgid "Add Flatpak Remote"
+msgstr "Ajouter un dépôt Flatpak"
+
+#: uninstall_plus/repos_page.py:97
+msgid "Reading repositories…"
+msgstr "Lecture des dépôts…"
+
+#: uninstall_plus/repos_page.py:99
+msgid "Could Not Read Repositories"
+msgstr "Impossible de lire les dépôts"
+
+#: uninstall_plus/repos_page.py:176
+msgid "No DNF repositories found"
+msgstr "Aucun dépôt DNF trouvé"
+
+#: uninstall_plus/repos_page.py:177
+msgid "Repository files are read from /etc/yum.repos.d"
+msgstr "Les fichiers de dépôts sont lus dans /etc/yum.repos.d"
+
+#: uninstall_plus/repos_page.py:186
+#, python-brace-format
+msgid "{id} · from {package}"
+msgstr "{id} · fourni par {package}"
+
+#: uninstall_plus/repos_page.py:191
+#, python-brace-format
+msgid "File: {path}"
+msgstr "Fichier : {path}"
+
+#: uninstall_plus/repos_page.py:193 uninstall_plus/repos_page.py:372
+#, python-brace-format
+msgid "URL: {url}"
+msgstr "URL : {url}"
+
+#: uninstall_plus/repos_page.py:195
+#, python-brace-format
+msgid "Provided by: {package}"
+msgstr "Fourni par : {package}"
+
+#: uninstall_plus/repos_page.py:204
+msgid "Remove Repository"
+msgstr "Supprimer le dépôt"
+
+#: uninstall_plus/repos_page.py:206
+#, python-brace-format
+msgid "Provided by the package “{package}”. Disable it instead."
+msgstr "Fourni par le paquet « {package} ». Désactivez-le plutôt."
+
+#: uninstall_plus/repos_page.py:209
+msgid "System repository. Disable it instead."
+msgstr "Dépôt du système. Désactivez-le plutôt."
+
+#: uninstall_plus/repos_page.py:223 uninstall_plus/repos_page.py:383
+#, python-brace-format
+msgid "{name} enabled"
+msgstr "{name} activé"
+
+#: uninstall_plus/repos_page.py:223
+msgid "Could Not Enable Repository"
+msgstr "Impossible d’activer le dépôt"
+
+#: uninstall_plus/repos_page.py:224 uninstall_plus/repos_page.py:384
+#, python-brace-format
+msgid "Enabling {name}…"
+msgstr "Activation de {name}…"
+
+#: uninstall_plus/repos_page.py:226 uninstall_plus/repos_page.py:386
+#, python-brace-format
+msgid "{name} disabled"
+msgstr "{name} désactivé"
+
+#: uninstall_plus/repos_page.py:226
+msgid "Could Not Disable Repository"
+msgstr "Impossible de désactiver le dépôt"
+
+#: uninstall_plus/repos_page.py:227 uninstall_plus/repos_page.py:387
+#, python-brace-format
+msgid "Disabling {name}…"
+msgstr "Désactivation de {name}…"
+
+#: uninstall_plus/repos_page.py:239
+#, python-brace-format
+msgid ""
+"“{name}” will be removed. Packages already installed from it stay installed, "
+"but they will no longer receive updates."
+msgstr ""
+"« {name} » sera supprimé. Les paquets déjà installés depuis ce dépôt restent "
+"installés, mais ne recevront plus de mises à jour."
+
+#: uninstall_plus/repos_page.py:242
+#, python-brace-format
+msgid "The COPR project {project} will be removed with all its repositories."
+msgstr "Le projet COPR {project} sera supprimé avec tous ses dépôts."
+
+#: uninstall_plus/repos_page.py:245
+#, python-brace-format
+msgid "Other repositories in {path} are kept."
+msgstr "Les autres dépôts de {path} sont conservés."
+
+#: uninstall_plus/repos_page.py:248
+msgid "Remove Repository?"
+msgstr "Supprimer le dépôt ?"
+
+#: uninstall_plus/repos_page.py:248 uninstall_plus/repos_page.py:402
+msgid "Remove"
+msgstr "Supprimer"
+
+#: uninstall_plus/repos_page.py:252 uninstall_plus/repos_page.py:406
+#, python-brace-format
+msgid "{name} removed"
+msgstr "{name} supprimé"
+
+#: uninstall_plus/repos_page.py:253
+msgid "Could Not Remove Repository"
+msgstr "Impossible de supprimer le dépôt"
+
+#: uninstall_plus/repos_page.py:254 uninstall_plus/repos_page.py:408
+#, python-brace-format
+msgid "Removing {name}…"
+msgstr "Suppression de {name}…"
+
+#: uninstall_plus/repos_page.py:285
+msgid "Repository File URL"
+msgstr "URL du fichier de dépôt"
+
+#: uninstall_plus/repos_page.py:287
+msgid "Add Repository From URL"
+msgstr "Ajouter un dépôt depuis une URL"
+
+#: uninstall_plus/repos_page.py:288
+msgid ""
+"Enter the address of a .repo file, for example one provided by a software "
+"vendor."
+msgstr ""
+"Saisissez l’adresse d’un fichier .repo, par exemple celle fournie par un "
+"éditeur de logiciel."
+
+#: uninstall_plus/repos_page.py:289 uninstall_plus/repos_page.py:349
+#: uninstall_plus/repos_page.py:434
+msgid "Add"
+msgstr "Ajouter"
+
+#: uninstall_plus/repos_page.py:293 uninstall_plus/repos_page.py:340
+msgid "Repository added"
+msgstr "Dépôt ajouté"
+
+#: uninstall_plus/repos_page.py:294 uninstall_plus/repos_page.py:341
+msgid "Could Not Add Repository"
+msgstr "Impossible d’ajouter le dépôt"
+
+#: uninstall_plus/repos_page.py:295 uninstall_plus/repos_page.py:342
+msgid "Adding repository…"
+msgstr "Ajout du dépôt…"
+
+#: uninstall_plus/repos_page.py:300
+msgid "Project (owner/project)"
+msgstr "Projet (propriétaire/projet)"
+
+#: uninstall_plus/repos_page.py:302
+msgid "Enable COPR Project"
+msgstr "Activer un projet COPR"
+
+#: uninstall_plus/repos_page.py:303
+msgid ""
+"COPR repositories are built by the community and are not reviewed by Fedora. "
+"Only enable projects you trust."
+msgstr ""
+"Les dépôts COPR sont construits par la communauté et ne sont pas vérifiés "
+"par Fedora. N’activez que des projets de confiance."
+
+#: uninstall_plus/repos_page.py:305
+msgid "Enable"
+msgstr "Activer"
+
+#: uninstall_plus/repos_page.py:309
+msgid "COPR project enabled"
+msgstr "Projet COPR activé"
+
+#: uninstall_plus/repos_page.py:310
+msgid "Could Not Enable COPR Project"
+msgstr "Impossible d’activer le projet COPR"
+
+#: uninstall_plus/repos_page.py:311
+msgid "Enabling COPR project…"
+msgstr "Activation du projet COPR…"
+
+#: uninstall_plus/repos_page.py:316
+msgid "Identifier (e.g. my-repo)"
+msgstr "Identifiant (par ex. mon-depot)"
+
+#: uninstall_plus/repos_page.py:317 uninstall_plus/repos_page.py:414
+msgid "Name"
+msgstr "Nom"
+
+#: uninstall_plus/repos_page.py:318
+msgid "Base URL"
+msgstr "URL de base"
+
+#: uninstall_plus/repos_page.py:319
+msgid "Check Package Signatures"
+msgstr "Vérifier les signatures des paquets"
+
+#: uninstall_plus/repos_page.py:320
+msgid "GPG Key URL (optional)"
+msgstr "URL de la clé GPG (facultatif)"
+
+#: uninstall_plus/repos_page.py:322
+msgid "Enabled"
+msgstr "Activé"
+
+#: uninstall_plus/repos_page.py:347
+msgid ""
+"Describe the repository. The identifier may only contain letters, digits, "
+"dots, dashes and underscores."
+msgstr ""
+"Décrivez le dépôt. L’identifiant ne peut contenir que des lettres, des "
+"chiffres, des points, des tirets et des tirets bas."
+
+#: uninstall_plus/repos_page.py:360
+msgid "No Flatpak remotes configured"
+msgstr "Aucun dépôt Flatpak configuré"
+
+#: uninstall_plus/repos_page.py:361
+msgid "Add Flathub to install Flatpak applications."
+msgstr "Ajoutez Flathub pour installer des applications Flatpak."
+
+#: uninstall_plus/repos_page.py:377
+msgid "Remove Remote"
+msgstr "Supprimer le dépôt"
+
+#: uninstall_plus/repos_page.py:383
+msgid "Could Not Enable Remote"
+msgstr "Impossible d’activer le dépôt"
+
+#: uninstall_plus/repos_page.py:386
+msgid "Could Not Disable Remote"
+msgstr "Impossible de désactiver le dépôt"
+
+#: uninstall_plus/repos_page.py:398
+msgid "Remove Flatpak Remote?"
+msgstr "Supprimer le dépôt Flatpak ?"
+
+#: uninstall_plus/repos_page.py:399
+#, python-brace-format
+msgid ""
+"“{name}” ({installation}) will be removed. Applications installed from this "
+"remote must be uninstalled first."
+msgstr ""
+"« {name} » ({installation}) sera supprimé. Les applications installées "
+"depuis ce dépôt doivent d’abord être désinstallées."
+
+#: uninstall_plus/repos_page.py:407
+msgid "Could Not Remove Remote"
+msgstr "Impossible de supprimer le dépôt"
+
+#: uninstall_plus/repos_page.py:415
+msgid ".flatpakrepo URL"
+msgstr "URL du fichier .flatpakrepo"
+
+#: uninstall_plus/repos_page.py:425
+msgid "Flatpak remote added"
+msgstr "Dépôt Flatpak ajouté"
+
+#: uninstall_plus/repos_page.py:426
+msgid "Could Not Add Remote"
+msgstr "Impossible d’ajouter le dépôt"
+
+#: uninstall_plus/repos_page.py:427
+msgid "Adding Flatpak remote…"
+msgstr "Ajout du dépôt Flatpak…"
+
+#: uninstall_plus/repos_page.py:432
+msgid ""
+"Flathub is filled in. To add another remote, replace the name and the URL "
+"with the ones given by its provider."
+msgstr ""
+"Flathub est prérempli. Pour ajouter un autre dépôt, remplacez le nom et "
+"l’URL par ceux donnés par son fournisseur."
+
+#: uninstall_plus/rpm_page.py:86
+msgid "No description"
+msgstr "Aucune description"
+
+#: uninstall_plus/rpm_page.py:89
+#, python-brace-format
+msgid "Repository: {repo}"
+msgstr "Dépôt : {repo}"
+
+#: uninstall_plus/rpm_page.py:105 uninstall_plus/rpm_page.py:263
+msgid "All Repositories"
+msgstr "Tous les dépôts"
+
+#: uninstall_plus/rpm_page.py:136
+msgid "Reading installed packages…"
+msgstr "Lecture des paquets installés…"
+
+#: uninstall_plus/rpm_page.py:139
+msgid "No Packages Found"
+msgstr "Aucun paquet trouvé"
+
+#: uninstall_plus/rpm_page.py:140
+msgid "Try a different search or change the filters."
+msgstr "Essayez une autre recherche ou modifiez les filtres."
+
+#: uninstall_plus/rpm_page.py:143
+msgid "Could Not Read Packages"
+msgstr "Impossible de lire les paquets"
+
+#: uninstall_plus/rpm_page.py:144
+msgid "Try Again"
+msgstr "Réessayer"
+
+#: uninstall_plus/rpm_page.py:158
+msgid "Search packages by name or description"
+msgstr "Rechercher des paquets par nom ou description"
+
+#: uninstall_plus/rpm_page.py:166
+msgid "Filter by repository"
+msgstr "Filtrer par dépôt"
+
+#: uninstall_plus/rpm_page.py:176
+msgid "Installed by me only"
+msgstr "Installés par moi uniquement"
+
+#: uninstall_plus/rpm_page.py:179
+msgid "Hide packages that were installed automatically as dependencies"
+msgstr "Masquer les paquets installés automatiquement comme dépendances"
+
+#: uninstall_plus/rpm_page.py:231
+#, python-brace-format
+msgid "{shown} of {total} package"
+msgid_plural "{shown} of {total} packages"
+msgstr[0] "{shown} sur {total} paquet"
+msgstr[1] "{shown} sur {total} paquets"
+
+#: uninstall_plus/rpm_page.py:233
+#, python-brace-format
+msgid "{total} package"
+msgid_plural "{total} packages"
+msgstr[0] "{total} paquet"
+msgstr[1] "{total} paquets"
+
+#: uninstall_plus/rpm_page.py:273
+msgid "DNF could not tell which packages you installed"
+msgstr "DNF n’a pas pu indiquer quels paquets vous avez installés"
+
+#: uninstall_plus/rpm_page.py:280
+msgid "Some package information is unavailable"
+msgstr "Certaines informations sur les paquets ne sont pas disponibles"
+
+#: uninstall_plus/rpm_page.py:306
+msgid "Architecture"
+msgstr "Architecture"
+
+#: uninstall_plus/rpm_page.py:307
+msgid "Repository"
+msgstr "Dépôt"
+
+#: uninstall_plus/rpm_page.py:309
+msgid "Installed On"
+msgstr "Installé le"
+
+#: uninstall_plus/rpm_page.py:310
+msgid "Install Reason"
+msgstr "Raison de l’installation"
+
+#: uninstall_plus/rpm_page.py:311
+msgid "Installed by you"
+msgstr "Installé par vous"
+
+#: uninstall_plus/rpm_page.py:311
+msgid "Dependency or system"
+msgstr "Dépendance ou système"
+
+#: uninstall_plus/rpm_page.py:319 uninstall_plus/rpm_page.py:328
+msgid "Description"
+msgstr "Description"
+
+#: uninstall_plus/rpm_page.py:320
+#, python-brace-format
+msgid "Could not read details: {error}"
+msgstr "Impossible de lire les détails : {error}"
+
+#: uninstall_plus/rpm_page.py:322 uninstall_plus/widgets.py:166
+msgid "Details"
+msgstr "Détails"
+
+#: uninstall_plus/rpm_page.py:323
+msgid "License"
+msgstr "Licence"
+
+#: uninstall_plus/rpm_page.py:324
+msgid "Website"
+msgstr "Site web"
+
+#: uninstall_plus/rpm_page.py:325
+msgid "Vendor"
+msgstr "Fournisseur"
+
+#: uninstall_plus/rpm_page.py:326
+msgid "Source Package"
+msgstr "Paquet source"
+
+#: uninstall_plus/rpm_page.py:337
+#, python-brace-format
+msgid "Cannot Uninstall “{name}”"
+msgstr "Impossible de désinstaller « {name} »"
+
+#: uninstall_plus/rpm_page.py:338
+msgid "Checking what will be removed…"
+msgstr "Vérification de ce qui sera supprimé…"
+
+#: uninstall_plus/rpm_page.py:345
+#, python-brace-format
+msgid ""
+"{count} package will be removed, including the packages that depend on "
+"{name} and the dependencies that are no longer needed."
+msgid_plural ""
+"{count} packages will be removed, including the packages that depend on "
+"{name} and the dependencies that are no longer needed."
+msgstr[0] ""
+"{count} paquet sera supprimé, y compris les paquets qui dépendent de {name} "
+"et les dépendances qui ne sont plus nécessaires."
+msgstr[1] ""
+"{count} paquets seront supprimés, y compris les paquets qui dépendent de "
+"{name} et les dépendances qui ne sont plus nécessaires."
+
+#: uninstall_plus/rpm_page.py:352
+#, python-brace-format
+msgid "{name} {version} will be removed from your system."
+msgstr "{name} {version} sera supprimé de votre système."
+
+#: uninstall_plus/rpm_page.py:357
+msgid "Transaction Details"
+msgstr "Détails de l’opération"
+
+#: uninstall_plus/widgets.py:169
+msgid "Close"
+msgstr "Fermer"
+
+#: uninstall_plus/window.py:15
+msgid "Search"
+msgstr "Rechercher"
+
+#: uninstall_plus/window.py:16 uninstall_plus/window.py:48
+msgid "Refresh"
+msgstr "Actualiser"
+
+#: uninstall_plus/window.py:17 uninstall_plus/window.py:68
+msgid "RPM Packages"
+msgstr "Paquets RPM"
+
+#: uninstall_plus/window.py:18 uninstall_plus/window.py:70
+msgid "Flatpak"
+msgstr "Flatpak"
+
+#: uninstall_plus/window.py:19 uninstall_plus/window.py:72
+msgid "Repositories"
+msgstr "Dépôts"
+
+#: uninstall_plus/window.py:21 uninstall_plus/window.py:52
+msgid "Keyboard Shortcuts"
+msgstr "Raccourcis clavier"
+
+#: uninstall_plus/window.py:22
+msgid "Quit"
+msgstr "Quitter"
+
+#: uninstall_plus/window.py:39
+msgid "Refresh (Ctrl+R)"
+msgstr "Actualiser (Ctrl+R)"
+
+#: uninstall_plus/window.py:53
+#, python-brace-format
+msgid "About {app}"
+msgstr "À propos d’{app}"
+
+#: uninstall_plus/window.py:56
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: uninstall_plus/window.py:185
+msgid "Please wait for the current operation to finish"
+msgstr "Veuillez attendre la fin de l’opération en cours"
+
+#: uninstall_plus/window.py:189
+msgid "Working…"
+msgstr "Opération en cours…"
+
+#: helper/uninstall-plus-helper:71
+#, python-brace-format
+msgid "Invalid {what}: {value}"
+msgstr "{what} non valide : {value}"
+
+#: helper/uninstall-plus-helper:164 helper/uninstall-plus-helper:173
+msgid "package"
+msgstr "Paquet"
+
+#: helper/uninstall-plus-helper:178 helper/uninstall-plus-helper:194
+#: helper/uninstall-plus-helper:226
+msgid "repository id"
+msgstr "Identifiant de dépôt"
+
+#: helper/uninstall-plus-helper:187
+msgid "URL"
+msgstr "URL"
+
+#: helper/uninstall-plus-helper:195
+msgid "name"
+msgstr "Nom"
+
+#: helper/uninstall-plus-helper:196
+msgid "base URL"
+msgstr "URL de base"
+
+#: helper/uninstall-plus-helper:198
+msgid "Invalid boolean value."
+msgstr "Valeur booléenne non valide."
+
+#: helper/uninstall-plus-helper:200
+msgid "GPG key URL"
+msgstr "URL de la clé GPG"
+
+#: helper/uninstall-plus-helper:202
+#, python-brace-format
+msgid "A repository with the id “{id}” already exists."
+msgstr "Un dépôt avec l’identifiant « {id} » existe déjà."
+
+#: helper/uninstall-plus-helper:205
+#, python-brace-format
+msgid "The file {path} already exists."
+msgstr "Le fichier {path} existe déjà."
+
+#: helper/uninstall-plus-helper:216
+#, python-brace-format
+msgid "Created {path}"
+msgstr "{path} créé"
+
+#: helper/uninstall-plus-helper:221
+msgid "COPR project"
+msgstr "Projet COPR"
+
+#: helper/uninstall-plus-helper:229
+#, python-brace-format
+msgid "No repository with the id “{id}” was found."
+msgstr "Aucun dépôt avec l’identifiant « {id} » n’a été trouvé."
+
+#: helper/uninstall-plus-helper:231
+msgid ""
+"This repository is part of the system and cannot be removed. Disable it "
+"instead."
+msgstr ""
+"Ce dépôt fait partie du système et ne peut pas être supprimé. Désactivez-le "
+"plutôt."
+
+#: helper/uninstall-plus-helper:236
+#, python-brace-format
+msgid ""
+"This repository is provided by the package “{package}”. Disable it, or "
+"uninstall that package from the RPM Packages tab."
+msgstr ""
+"Ce dépôt est fourni par le paquet « {package} ». Désactivez-le, ou "
+"désinstallez ce paquet depuis l’onglet Paquets RPM."
+
+#: helper/uninstall-plus-helper:252
+#, python-brace-format
+msgid "Removed {path}"
+msgstr "{path} supprimé"
+
+#: helper/uninstall-plus-helper:255
+#, python-brace-format
+msgid "Removed [{id}] from {path}"
+msgstr "[{id}] supprimé de {path}"
+
+#: helper/uninstall-plus-helper:294
+#, python-brace-format
+msgid "“{action}” expects {count} argument(s)."
+msgstr "« {action} » attend {count} argument(s)."
+
+#: helper/uninstall-plus-helper:296
+msgid "This helper must be run as root (through pkexec)."
+msgstr "Cet assistant doit être exécuté en tant que root (via pkexec)."
